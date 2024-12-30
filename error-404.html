@@ -4,61 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 Not Found - Anime Forum</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/theme.js"></script>
     <style>
-        :root {
-            --bg-color: #FFFFEC;
-        }
-        
-        body {
-            font-family: "MS PGothic", Arial, sans-serif;
-            background: var(--bg-color);
-            color: #000;
-            line-height: 1.5;
-            margin: 8px;
-            padding: 0;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .site-header {
-            border: 1px solid #8B8B8B;
-            padding: 5px;
-            background: #F0E0D6;
-            margin-bottom: 10px;
-        }
-        
-        .nav-links {
-            margin: 10px 0;
-            font-size: 90%;
-        }
-        
-        .nav-links a {
-            color: #0000EE;
-            text-decoration: none;
-            margin-right: 10px;
-        }
-        
-        .settings {
-            border: 1px solid #8B8B8B;
-            padding: 5px;
-            margin: 10px 0;
-            background: #F0E0D6;
-        }
-        
-        .theme-buttons {
-            margin: 5px 0;
-        }
-        
-        .theme-btn {
-            margin-right: 5px;
-            padding: 2px 8px;
-            cursor: pointer;
-        }
-        
-        .color-picker {
-            margin: 5px 0;
-        }
-
+        /* Page-specific styles */
         .error-container {
             border: 1px solid #8B8B8B;
             background: #F0E0D6;
@@ -104,6 +53,7 @@
         .search-input {
             padding: 3px;
             font-family: "MS PGothic", Arial, sans-serif;
+            width: 200px;
         }
 
         .search-btn {
@@ -114,11 +64,27 @@
             cursor: pointer;
             font-family: "MS PGothic", Arial, sans-serif;
         }
+
+        /* Animation for error code */
+        .error-code {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
     <div class="site-header">
-        <h1 style="font-size: 100%; margin: 0;">Anime Forum - Page Not Found</h1>
+        <h1>Anime Forum - Page Not Found</h1>
     </div>
 
     <div class="nav-links">
@@ -131,15 +97,14 @@
     <div class="settings">
         <div>Theme:</div>
         <div class="theme-buttons">
-            <button class="theme-btn" onclick="setTheme('#FFFFEC')">Classic</button>
-            <button class="theme-btn" onclick="setTheme('#E0FFE0')">Mint</button>
-            <button class="theme-btn" onclick="setTheme('#FFE0E0')">Sakura</button>
-            <button class="theme-btn" onclick="setTheme('#E0E0FF')">Sky</button>
+            <button class="theme-btn" data-theme="#FFFFEC">Classic</button>
+            <button class="theme-btn" data-theme="#E0FFE0">Mint</button>
+            <button class="theme-btn" data-theme="#FFE0E0">Sakura</button>
+            <button class="theme-btn" data-theme="#E0E0FF">Sky</button>
         </div>
         <div>
             <label for="bgcolor">Custom Color:</label>
-            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC" 
-                   oninput="setTheme(this.value)">
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC">
         </div>
     </div>
 
@@ -162,24 +127,33 @@
 
         <div class="search-box">
             <form onsubmit="return handleSearch(event)">
-                <input type="text" class="search-input" placeholder="Search the forum...">
+                <input type="text" class="search-input" placeholder="Search the forum..." required>
                 <button type="submit" class="search-btn">Search</button>
             </form>
         </div>
     </div>
 
     <script>
-        function setTheme(color) {
-            document.documentElement.style.setProperty('--bg-color', color);
-            document.getElementById('bgcolor').value = color;
-        }
-
         function handleSearch(event) {
             event.preventDefault();
-            // In a real implementation, this would perform the search
-            alert("Search functionality would be implemented here!");
+            const searchTerm = event.target.querySelector('.search-input').value;
+            
+            // Store the search term in sessionStorage for the search page
+            sessionStorage.setItem('lastSearch', searchTerm);
+            
+            // Redirect to search page
+            window.location.href = 'search.html';
             return false;
         }
+
+        // Check if we came from another page (track user journey)
+        document.addEventListener('DOMContentLoaded', () => {
+            const referrer = document.referrer;
+            if (referrer) {
+                console.log('User came from:', referrer);
+                // Could use this to customize helpful links based on where user came from
+            }
+        });
     </script>
 </body>
 </html>
