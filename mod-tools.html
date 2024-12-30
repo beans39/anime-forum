@@ -4,6 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moderator Control Panel - Anime Forum</title>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    
+    <script>
+        // Theme Initialization
+        (function() {
+            // Set initial theme from localStorage
+            const savedTheme = localStorage.getItem('forumTheme') || '#FFFFEC';
+            document.documentElement.style.setProperty('--bg-color', savedTheme);
+            
+            // Optional: Update color picker if it exists
+            window.addEventListener('DOMContentLoaded', () => {
+                const colorPicker = document.getElementById('bgcolor');
+                if (colorPicker) {
+                    colorPicker.value = savedTheme;
+                }
+            });
+        })();
+    </script>
+
     <style>
         :root {
             --bg-color: #FFFFEC;
