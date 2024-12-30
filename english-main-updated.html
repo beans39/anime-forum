@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Forum</title>
+    <style>
+        :root {
+            --bg-color: #FFFFEC;
+        }
+        
+        body {
+            font-family: "MS PGothic", Arial, sans-serif;
+            background: var(--bg-color);
+            color: #000;
+            line-height: 1.5;
+            margin: 8px;
+            padding: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* ... [previous CSS styles remain the same] ... */
+        
+        .site-header {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            background: #F0E0D6;
+            margin-bottom: 10px;
+        }
+        
+        .category {
+            border: 1px solid #8B8B8B;
+            margin-bottom: 20px;
+        }
+        
+        .category-header {
+            background: #E04040;
+            color: #FFFFFF;
+            padding: 3px;
+            font-weight: normal;
+            font-size: 100%;
+            margin: 0;
+        }
+        
+        .thread-list {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .thread {
+            padding: 5px;
+            border-bottom: 1px solid #8B8B8B;
+            font-size: 90%;
+        }
+        
+        .thread:last-child {
+            border-bottom: none;
+        }
+        
+        .thread-title {
+            text-decoration: none;
+            color: #0000EE;
+        }
+        
+        .thread-title:visited {
+            color: #551A8B;
+        }
+        
+        .thread-info {
+            color: #707070;
+            font-size: 85%;
+        }
+        
+        .nav-links {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+        
+        .nav-links a {
+            color: #0000EE;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .rules {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            font-size: 85%;
+            background: #F0E0D6;
+        }
+        
+        .new-thread-form {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+        
+        input, textarea {
+            font-family: "MS PGothic", Arial, sans-serif;
+            font-size: 90%;
+            margin: 2px 0;
+        }
+        
+        .submit-btn {
+            font-size: 90%;
+            margin-top: 5px;
+        }
+
+        .settings {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+
+        .theme-buttons {
+            margin: 5px 0;
+        }
+
+        .theme-btn {
+            margin-right: 5px;
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+
+        .color-picker {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-header">
+        <h1 style="font-size: 100%; margin: 0;">Anime Forum</h1>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="rules.html">Rules</a>
+        <a href="help.html">Help</a>
+    </div>
+
+    <div class="settings">
+        <div>Theme:</div>
+        <div class="theme-buttons">
+            <button class="theme-btn" onclick="setTheme('#FFFFEC')">Classic</button>
+            <button class="theme-btn" onclick="setTheme('#E0FFE0')">Mint</button>
+            <button class="theme-btn" onclick="setTheme('#FFE0E0')">Sakura</button>
+            <button class="theme-btn" onclick="setTheme('#E0E0FF')">Sky</button>
+        </div>
+        <div>
+            <label for="bgcolor">Custom Color:</label>
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC" 
+                   oninput="setTheme(this.value)">
+        </div>
+    </div>
+
+    <div class="rules">
+        * Please read the rules before posting<br>
+        * Check local rules before creating threads
+    </div>
+
+    <div class="new-thread-form">
+        <form>
+            <div>Name: <input type="text" size="20"></div>
+            <div>Title: <input type="text" size="30"></div>
+            <div><textarea rows="3" cols="50" placeholder="Message"></textarea></div>
+            <div><input type="submit" value="Create Thread" class="submit-btn"></div>
+        </form>
+    </div>
+
+    <div class="category">
+        <h2 class="category-header">General Anime</h2>
+        <ul class="thread-list">
+            <li class="thread">
+                <a href="thread.html" class="thread-title">New Anime Discussion Thread</a>
+                <div class="thread-info">
+                    Replies: <span class="post-count">238</span> | 
+                    Last: 12/30/24 14:23
+                </div>
+            </li>
+            <li class="thread">
+                <a href="thread.html" class="thread-title">Recommend me some anime!</a>
+                <div class="thread-info">
+                    Replies: <span class="post-count">156</span> | 
+                    Last: 12/30/24 14:20
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h2 class="category-header">Voice Actors</h2>
+        <ul class="thread-list">
+            <li class="thread">
+                <a href="thread.html" class="thread-title">Voice Actor Discussion</a>
+                <div class="thread-info">
+                    Replies: <span class="post-count">189</span> | 
+                    Last: 12/30/24 14:10
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // Simple theme setter without localStorage
+        function setTheme(color) {
+            document.documentElement.style.setProperty('--bg-color', color);
+            document.getElementById('bgcolor').value = color;
+        }
+    </script>
+</body>
+</html>

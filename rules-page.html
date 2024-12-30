@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules - Anime Forum</title>
+    <style>
+        :root {
+            --bg-color: #FFFFEC;
+        }
+        
+        body {
+            font-family: "MS PGothic", Arial, sans-serif;
+            background: var(--bg-color);
+            color: #000;
+            line-height: 1.5;
+            margin: 8px;
+            padding: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .site-header {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            background: #F0E0D6;
+            margin-bottom: 10px;
+        }
+        
+        .nav-links {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+        
+        .nav-links a {
+            color: #0000EE;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .settings {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+        
+        .theme-buttons {
+            margin: 5px 0;
+        }
+        
+        .theme-btn {
+            margin-right: 5px;
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+        
+        .color-picker {
+            margin: 5px 0;
+        }
+
+        .rules-content {
+            border: 1px solid #8B8B8B;
+            padding: 10px;
+            background: #FFFFFF;
+            margin: 10px 0;
+        }
+
+        .rules-section {
+            margin-bottom: 15px;
+        }
+
+        .rules-section h2 {
+            font-size: 100%;
+            color: #E04040;
+            margin: 0 0 5px 0;
+        }
+
+        .rules-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .rules-list li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-header">
+        <h1 style="font-size: 100%; margin: 0;">Anime Forum - Rules</h1>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="rules.html">Rules</a>
+        <a href="help.html">Help</a>
+    </div>
+
+    <div class="settings">
+        <div>Theme:</div>
+        <div class="theme-buttons">
+            <button class="theme-btn" onclick="setTheme('#FFFFEC')">Classic</button>
+            <button class="theme-btn" onclick="setTheme('#E0FFE0')">Mint</button>
+            <button class="theme-btn" onclick="setTheme('#FFE0E0')">Sakura</button>
+            <button class="theme-btn" onclick="setTheme('#E0E0FF')">Sky</button>
+        </div>
+        <div>
+            <label for="bgcolor">Custom Color:</label>
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC" 
+                   oninput="setTheme(this.value)">
+        </div>
+    </div>
+
+    <div class="rules-content">
+        <div class="rules-section">
+            <h2>General Rules</h2>
+            <ul class="rules-list">
+                <li>Be respectful to all users</li>
+                <li>No spam or excessive posting</li>
+                <li>No inappropriate content or NSFW material</li>
+                <li>Keep discussions on-topic within their respective threads</li>
+                <li>No advertising or self-promotion without permission</li>
+            </ul>
+        </div>
+
+        <div class="rules-section">
+            <h2>Posting Guidelines</h2>
+            <ul class="rules-list">
+                <li>Check if a similar thread exists before creating a new one</li>
+                <li>Use clear, descriptive titles for new threads</li>
+                <li>Mark spoilers appropriately</li>
+                <li>Credit artists when sharing artwork</li>
+                <li>No cross-posting the same content in multiple threads</li>
+            </ul>
+        </div>
+
+        <div class="rules-section">
+            <h2>Content Rules</h2>
+            <ul class="rules-list">
+                <li>No pirated content or illegal streaming links</li>
+                <li>No hate speech or discriminatory content</li>
+                <li>Keep criticism constructive</li>
+                <li>No political discussions outside designated threads</li>
+                <li>Respect copyright and fair use guidelines</li>
+            </ul>
+        </div>
+
+        <div class="rules-section">
+            <h2>Consequences</h2>
+            <ul class="rules-list">
+                <li>First offense: Warning</li>
+                <li>Second offense: 24-hour posting restriction</li>
+                <li>Third offense: 1-week suspension</li>
+                <li>Severe violations may result in immediate permanent ban</li>
+                <li>Ban appeals can be made through the contact form</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function setTheme(color) {
+            document.documentElement.style.setProperty('--bg-color', color);
+            document.getElementById('bgcolor').value = color;
+        }
+    </script>
+</body>
+</html>
