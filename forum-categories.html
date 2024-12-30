@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>☆彡 Anime Forums - Categories ミ★</title>
+    <style>
+        body {
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            background-color: #ffe6f2;
+            margin: 0;
+            padding: 20px;
+            background-image: 
+                url('/api/placeholder/400/600'), /* Anime character silhouette left */
+                url('/api/placeholder/400/600'); /* Anime character silhouette right */
+            background-position: 
+                left center,
+                right center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: contain;
+        }
+        
+        .container {
+            width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 3px solid #ff99cc;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(255, 153, 204, 0.5);
+        }
+        
+        .header {
+            background: linear-gradient(to right, #ff99cc, #ff66cc);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .category-card {
+            border: 2px solid #ff99cc;
+            border-radius: 10px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fff, #ffebf5);
+            transition: transform 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 153, 204, 0.3);
+        }
+        
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #ff99cc;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        
+        .category-title {
+            color: #cc0066;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .category-stats {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .category-description {
+            color: #444;
+            margin: 10px 0;
+        }
+        
+        .latest-topic {
+            font-size: 0.9em;
+            color: #ff66cc;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ff99cc;
+        }
+
+        .navigation {
+            background-color: #ffcce6;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .navigation a {
+            color: #cc0066;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        
+        .navigation a:hover {
+            color: #ff1a8c;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>アニメ Forums ☆彡</h1>
+            <div>~ Browse Our Categories ~</div>
+        </div>
+        
+        <div class="navigation">
+            <a href="index.html">ホーム</a>
+            <a href="#">フォーラム</a>
+            <a href="#">メンバー</a>
+            <a href="#">検索</a>
+            <a href="#">登録</a>
+        </div>
+        
+        <div class="category-grid">
+            <div class="category-card">
+                <div class="category-icon"></div>
+                <div class="category-title">✧ Seasonal Anime</div>
+                <div class="category-description">
+                    Discuss currently airing anime series! Share your thoughts on the latest episodes.
+                </div>
+                <div class="category-stats">
+                    Threads: 1,337 | Posts: 42,000
+                </div>
+                <div class="latest-topic">
+                    Latest: "Winter 2024 First Impressions!" by MoonlightSenshi
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon"></div>
+                <div class="category-title">✧ Classic Corner</div>
+                <div class="category-description">
+                    Remember and discuss beloved classic anime series from past decades.
+                </div>
+                <div class="category-stats">
+                    Threads: 942 | Posts: 28,500
+                </div>
+                <div class="latest-topic">
+                    Latest: "90s Anime Rewatch Club" by RetroSenpai
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon"></div>
+                <div class="category-title">✧ Fan Art Gallery</div>
+                <div class="category-description">
+                    Share your artwork and appreciate others' creative works!
+                </div>
+                <div class="category-stats">
+                    Threads: 756 | Posts: 15,200
+                </div>
+                <div class="latest-topic">
+                    Latest: "My Ghibli Inspired Paintings" by ArtisticChan
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon"></div>
+                <div class="category-title">✧ Manga Discussion</div>
+                <div class="category-description">
+                    Talk about your favorite manga series and latest chapters.
+                </div>
+                <div class="category-stats">
+                    Threads: 892 | Posts: 31,400
+                </div>
+                <div class="latest-topic">
+                    Latest: "Weekly Shonen Jump Discussion" by MangaMaster
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon"></div>
+                <div class="category-title">✧ Cosplay Central</div>
+                <div class="category-description">
+                    Share your cosplay photos and get tips from fellow cosplayers!
+                </div>
+                <div class="category-stats">
+                    Threads: 445 | Posts: 12,800
+                </div>
+                <div class="latest-topic">
+                    Latest: "Convention Meetup Thread" by CosplayQueen
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon"></div>
+                <div class="category-title">✧ Music & OST</div>
+                <div class="category-description">
+                    Discuss anime openings, endings, and soundtracks.
+                </div>
+                <div class="category-stats">
+                    Threads: 338 | Posts: 8,900
+                </div>
+                <div class="latest-topic">
+                    Latest: "Best OPs of 2024" by MusicMahou
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
