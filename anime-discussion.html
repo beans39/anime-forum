@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anime Discussion - Anime Forum</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/theme.js"></script>
     <style>
-        :root {
-            --bg-color: #FFFFEC;
-        }
-        
-        /* [Previous standard styles] */
-        
+        /* Additional styles specific to discussion page */
         .category-description {
             border: 1px solid #8B8B8B;
             padding: 5px;
@@ -30,6 +27,11 @@
             border: 1px solid #8B8B8B;
             padding: 5px;
             background: #F0E0D6;
+            cursor: pointer;
+        }
+
+        .subcategory:hover {
+            background: #FFFFFF;
         }
 
         .thread-filters {
@@ -38,10 +40,60 @@
             margin: 10px 0;
             border: 1px solid #8B8B8B;
         }
+
+        .thread-list {
+            border: 1px solid #8B8B8B;
+            margin: 10px 0;
+        }
+
+        .thread-item {
+            padding: 8px;
+            border-bottom: 1px solid #8B8B8B;
+            background: #FFFFFF;
+        }
+
+        .thread-item:last-child {
+            border-bottom: none;
+        }
+
+        .thread-title {
+            color: #0000EE;
+            text-decoration: none;
+            font-size: 90%;
+        }
+
+        .thread-meta {
+            color: #707070;
+            font-size: 85%;
+            margin-top: 3px;
+        }
     </style>
 </head>
 <body>
-    <!-- [Standard header and navigation] -->
+    <div class="site-header">
+        <h1>Anime Forum - Anime Discussion</h1>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="rules.html">Rules</a>
+        <a href="help.html">Help</a>
+    </div>
+
+    <div class="settings">
+        <div>Theme:</div>
+        <div class="theme-buttons">
+            <button class="theme-btn" data-theme="#FFFFEC">Classic</button>
+            <button class="theme-btn" data-theme="#E0FFE0">Mint</button>
+            <button class="theme-btn" data-theme="#FFE0E0">Sakura</button>
+            <button class="theme-btn" data-theme="#E0E0FF">Sky</button>
+        </div>
+        <div>
+            <label for="bgcolor">Custom Color:</label>
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC">
+        </div>
+    </div>
 
     <div class="category-description">
         Discuss all things anime! From classics to currently airing series.
@@ -55,6 +107,46 @@
         <div class="subcategory">Reviews</div>
     </div>
 
-    <!-- [Thread list and pagination] -->
+    <div class="thread-filters">
+        <select>
+            <option>Sort by: Latest Posts</option>
+            <option>Sort by: Most Views</option>
+            <option>Sort by: Most Replies</option>
+            <option>Sort by: Recently Created</option>
+        </select>
+    </div>
+
+    <div class="thread-list">
+        <div class="thread-item">
+            <a href="thread.html" class="thread-title">Winter 2024 Anime Discussion</a>
+            <div class="thread-meta">
+                By: AnimeUser123 | Replies: 234 | Views: 1,543 | Last: 2024-12-30 14:25
+            </div>
+        </div>
+
+        <div class="thread-item">
+            <a href="thread.html" class="thread-title">Best Anime of 2024 - Community Vote</a>
+            <div class="thread-meta">
+                By: AnimeFan456 | Replies: 189 | Views: 987 | Last: 2024-12-30 14:20
+            </div>
+        </div>
+
+        <div class="thread-item">
+            <a href="thread.html" class="thread-title">Animation Quality Discussion</a>
+            <div class="thread-meta">
+                By: SakuraChan | Replies: 156 | Views: 789 | Last: 2024-12-30 14:15
+            </div>
+        </div>
+    </div>
+
+    <div class="pagination" style="text-align: center; margin: 10px 0;">
+        <a href="#" class="page-link">←</a>
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <span>...</span>
+        <a href="#" class="page-link">42</a>
+        <a href="#" class="page-link">→</a>
+    </div>
 </body>
 </html>
