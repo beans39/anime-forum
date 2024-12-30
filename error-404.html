@@ -1,159 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found - Anime Forum</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <script src="../js/theme.js"></script>
-    <style>
-        /* Page-specific styles */
-        .error-container {
-            border: 1px solid #8B8B8B;
-            background: #F0E0D6;
-            padding: 20px;
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .error-code {
-            font-size: 150%;
-            color: #E04040;
-            margin-bottom: 10px;
-        }
-
-        .error-message {
-            margin: 15px 0;
-        }
-
-        .helpful-links {
-            background: #FFFFFF;
-            border: 1px solid #8B8B8B;
-            padding: 10px;
-            margin: 15px 0;
-            text-align: left;
-        }
-
-        .helpful-links h3 {
-            font-size: 100%;
-            margin: 0 0 10px 0;
-            color: #E04040;
-        }
-
-        .helpful-links ul {
-            margin: 0;
-            padding-left: 20px;
-            font-size: 90%;
-        }
-
-        .search-box {
-            margin: 15px 0;
-        }
-
-        .search-input {
-            padding: 3px;
-            font-family: "MS PGothic", Arial, sans-serif;
-            width: 200px;
-        }
-
-        .search-btn {
-            background: #E04040;
-            color: white;
-            border: none;
-            padding: 3px 10px;
-            cursor: pointer;
-            font-family: "MS PGothic", Arial, sans-serif;
-        }
-
-        /* Animation for error code */
-        .error-code {
-            animation: fadeInUp 0.5s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="site-header">
-        <h1>Anime Forum - Page Not Found</h1>
+<div class="error-container">
+    <!-- Existing error code and message -->
+    <div class="error-code">404 - Page Not Found</div>
+    <div class="error-message">
+        The page you're looking for doesn't exist or has been moved.
     </div>
 
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="search.html">Search</a>
-        <a href="rules.html">Rules</a>
-        <a href="help.html">Help</a>
+    <!-- Last visited URL info -->
+    <div class="last-url" style="font-size: 85%; color: #707070; margin: 10px 0;">
+        Attempted URL: <span id="attempted-url"></span>
     </div>
 
-    <div class="settings">
-        <div>Theme:</div>
-        <div class="theme-buttons">
-            <button class="theme-btn" data-theme="#FFFFEC">Classic</button>
-            <button class="theme-btn" data-theme="#E0FFE0">Mint</button>
-            <button class="theme-btn" data-theme="#FFE0E0">Sakura</button>
-            <button class="theme-btn" data-theme="#E0E0FF">Sky</button>
-        </div>
-        <div>
-            <label for="bgcolor">Custom Color:</label>
-            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC">
-        </div>
+    <div class="helpful-links">
+        <h3>You might want to:</h3>
+        <ul>
+            <li>Check if the URL is correct</li>
+            <li>Return to the <a href="index.html">homepage</a></li>
+            <li>View your <a href="profile.html">profile</a></li>
+            <li>Browse <a href="index.html">recent discussions</a></li>
+            <li>Contact a moderator if you need help</li>
+        </ul>
     </div>
 
-    <div class="error-container">
-        <div class="error-code">404 - Page Not Found</div>
-        <div class="error-message">
-            The page you're looking for doesn't exist or has been moved.
-        </div>
-
-        <div class="helpful-links">
-            <h3>You might want to:</h3>
-            <ul>
-                <li>Check if the URL is correct</li>
-                <li>Return to the <a href="index.html">homepage</a></li>
-                <li>View your <a href="profile.html">profile</a></li>
-                <li>Browse <a href="index.html">recent discussions</a></li>
-                <li>Contact a moderator if you need help</li>
-            </ul>
-        </div>
-
-        <div class="search-box">
-            <form onsubmit="return handleSearch(event)">
-                <input type="text" class="search-input" placeholder="Search the forum..." required>
-                <button type="submit" class="search-btn">Search</button>
-            </form>
-        </div>
+    <!-- Report broken link form -->
+    <div class="report-link" style="margin-top: 15px; text-align: left; background: #FFFFFF; border: 1px solid #8B8B8B; padding: 10px;">
+        <button onclick="toggleReportForm()" class="search-btn" style="margin-bottom: 10px;">
+            Report Broken Link
+        </button>
+        <form id="report-form" style="display: none;" onsubmit="return handleReport(event)">
+            <textarea 
+                placeholder="Please provide any additional details about what you were trying to access..."
+                style="width: 100%; margin-bottom: 10px; padding: 5px; font-family: inherit;"
+                rows="3"
+            ></textarea>
+            <button type="submit" class="search-btn">Submit Report</button>
+        </form>
     </div>
 
-    <script>
-        function handleSearch(event) {
-            event.preventDefault();
-            const searchTerm = event.target.querySelector('.search-input').value;
-            
-            // Store the search term in sessionStorage for the search page
-            sessionStorage.setItem('lastSearch', searchTerm);
-            
-            // Redirect to search page
-            window.location.href = 'search.html';
-            return false;
+    <div class="search-box">
+        <form onsubmit="return handleSearch(event)">
+            <input type="text" class="search-input" placeholder="Search the forum..." required>
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function handleSearch(event) {
+        event.preventDefault();
+        const searchTerm = event.target.querySelector('.search-input').value;
+        sessionStorage.setItem('lastSearch', searchTerm);
+        window.location.href = 'search.html';
+        return false;
+    }
+
+    // Display attempted URL
+    document.addEventListener('DOMContentLoaded', () => {
+        const attemptedUrl = window.location.pathname;
+        document.getElementById('attempted-url').textContent = attemptedUrl;
+
+        const referrer = document.referrer;
+        if (referrer) {
+            console.log('User came from:', referrer);
         }
+    });
 
-        // Check if we came from another page (track user journey)
-        document.addEventListener('DOMContentLoaded', () => {
-            const referrer = document.referrer;
-            if (referrer) {
-                console.log('User came from:', referrer);
-                // Could use this to customize helpful links based on where user came from
-            }
-        });
-    </script>
-</body>
-</html>
+    // Toggle report form visibility
+    function toggleReportForm() {
+        const form = document.getElementById('report-form');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Handle report submission
+    function handleReport(event) {
+        event.preventDefault();
+        const details = event.target.querySelector('textarea').value;
+        const report = {
+            url: window.location.pathname,
+            referrer: document.referrer,
+            details: details,
+            timestamp: new Date().toISOString()
+        };
+        console.log('Report submitted:', report);
+        alert('Thank you for reporting this broken link. Our moderators will look into it.');
+        event.target.style.display = 'none';
+        return false;
+    }
+</script>
