@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Discussion - Anime Forum</title>
+    <style>
+        :root {
+            --bg-color: #FFFFEC;
+        }
+        
+        body {
+            font-family: "MS PGothic", Arial, sans-serif;
+            background: var(--bg-color);
+            color: #000;
+            line-height: 1.5;
+            margin: 8px;
+            padding: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .site-header {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            background: #F0E0D6;
+            margin-bottom: 10px;
+        }
+        
+        .nav-links {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+        
+        .nav-links a {
+            color: #0000EE;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .settings {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+        
+        .theme-buttons {
+            margin: 5px 0;
+        }
+        
+        .theme-btn {
+            margin-right: 5px;
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+        
+        .color-picker {
+            margin: 5px 0;
+        }
+
+        .category-info {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+
+        .category-header {
+            background: #E04040;
+            color: #FFFFFF;
+            padding: 3px;
+            font-weight: normal;
+            font-size: 100%;
+            margin: 0;
+        }
+
+        .thread-list {
+            border: 1px solid #8B8B8B;
+            margin: 10px 0;
+        }
+
+        .thread-item {
+            padding: 5px;
+            border-bottom: 1px solid #8B8B8B;
+            background: #FFFFFF;
+        }
+
+        .thread-item:last-child {
+            border-bottom: none;
+        }
+
+        .thread-title {
+            color: #0000EE;
+            text-decoration: none;
+            font-size: 90%;
+        }
+
+        .thread-meta {
+            color: #707070;
+            font-size: 85%;
+            margin-top: 3px;
+        }
+
+        .new-thread-form {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+
+        .form-input {
+            font-family: "MS PGothic", Arial, sans-serif;
+            margin: 2px 0;
+            font-size: 90%;
+        }
+
+        .submit-btn {
+            background: #E04040;
+            color: white;
+            border: none;
+            padding: 3px 10px;
+            cursor: pointer;
+            font-family: "MS PGothic", Arial, sans-serif;
+        }
+
+        .pagination {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 90%;
+        }
+
+        .page-link {
+            display: inline-block;
+            padding: 2px 8px;
+            margin: 0 2px;
+            border: 1px solid #8B8B8B;
+            text-decoration: none;
+            color: #0000EE;
+        }
+
+        .page-link.active {
+            background: #E04040;
+            color: #FFFFFF;
+            border-color: #E04040;
+        }
+
+        .thread-tags {
+            margin-top: 3px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #F0E0D6;
+            border: 1px solid #8B8B8B;
+            padding: 1px 5px;
+            font-size: 85%;
+            margin-right: 3px;
+        }
+
+        .sticky-thread {
+            background: #FFF0F0;
+        }
+
+        .category-stats {
+            font-size: 85%;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-header">
+        <h1 style="font-size: 100%; margin: 0;">Anime Forum - Anime Discussion</h1>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="rules.html">Rules</a>
+        <a href="help.html">Help</a>
+    </div>
+
+    <div class="settings">
+        <div>Theme:</div>
+        <div class="theme-buttons">
+            <button class="theme-btn" onclick="setTheme('#FFFFEC')">Classic</button>
+            <button class="theme-btn" onclick="setTheme('#E0FFE0')">Mint</button>
+            <button class="theme-btn" onclick="setTheme('#FFE0E0')">Sakura</button>
+            <button class="theme-btn" onclick="setTheme('#E0E0FF')">Sky</button>
+        </div>
+        <div>
+            <label for="bgcolor">Custom Color:</label>
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC" 
+                   oninput="setTheme(this.value)">
+        </div>
+    </div>
+
+    <div class="category-info">
+        <div class="category-stats">
+            Threads: 2,547 | Posts: 47,893 | Users: 1,234
+        </div>
+        <div>Category Moderators: AnimeMod1, AnimeMod2</div>
+    </div>
+
+    <div class="new-thread-form">
+        <form onsubmit="return handleNewThread(event)">
+            <div>Title: <input type="text" class="form-input" size="40" required></div>
+            <div>Tags: <input type="text" class="form-input" size="30" placeholder="separated by commas"></div>
+            <div><textarea class="form-input" rows="4" cols="50" placeholder="Thread content..." required></textarea></div>
+            <div>
+                <label><input type="checkbox"> Subscribe to thread</label>
+                <button type="submit" class="submit-btn">Create Thread</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="thread-list">
+        <h2 class="category-header">Sticky Threads</h2>
+        
+        <div class="thread-item sticky-thread">
+            <a href="#" class="thread-title">[Important] Forum Rules for Anime Discussion</a>
+            <div class="thread-meta">
+                By: Moderator | Replies: 45 | Views: 12,543 | Last: 2024-12-30 14:30
+            </div>
+        </div>
+
+        <h2 class="category-header">Recent Threads</h2>
+
+        <div class="thread-item">
+            <a href="#" class="thread-title">Winter 2024 Anime Discussion</a>
+            <div class="thread-meta">
+                By: AnimeUser123 | Replies: 234 | Views: 1,543 | Last: 2024-12-30 14:25
+            </div>
+            <div class="thread-tags">
+                <span class="tag">Winter 2024</span>
+                <span class="tag">Discussion</span>
+            </div>
+        </div>
+
+        <div class="thread-item">
+            <a href="#" class="thread-title">Best Anime of 2024 - Community Vote</a>
+            <div class="thread-meta">
+                By: AnimeFan456 | Replies: 189 | Views: 987 | Last: 2024-12-30 14:20
+            </div>
+            <div class="thread-tags">
+                <span class="tag">Poll</span>
+                <span class="tag">2024</span>
+            </div>
+        </div>
+
+        <div class="thread-item">
+            <a href="#" class="thread-title">Animation Quality Discussion</a>
+            <div class="thread-meta">
+                By: SakuraChan | Replies: 156 | Views: 789 | Last: 2024-12-30 14:15
+            </div>
+            <div class="thread-tags">
+                <span class="tag">Animation</span>
+                <span class="tag">Technical</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pagination">
+        <a href="#" class="page-link">←</a>
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <span>...</span>
+        <a href="#" class="page-link">42</a>
+        <a href="#" class="page-link">→</a>
+    </div>
+
+    <script>
+        function setTheme(color) {
+            document.documentElement.style.setProperty('--bg-color', color);
+            document.getElementById('bgcolor').value = color;
+        }
+
+        function handleNewThread(event) {
+            event.preventDefault();
+            // In a real implementation, this would submit the new thread
+            alert("New thread would be created here!");
+            return false;
+        }
+    </script>
+</body>
+</html>
