@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thread View - Anime Forum</title>
+    <style>
+        :root {
+            --bg-color: #FFFFEC;
+        }
+        
+        body {
+            font-family: "MS PGothic", Arial, sans-serif;
+            background: var(--bg-color);
+            color: #000;
+            line-height: 1.5;
+            margin: 8px;
+            padding: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .site-header {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            background: #F0E0D6;
+            margin-bottom: 10px;
+        }
+        
+        .nav-links {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+        
+        .nav-links a {
+            color: #0000EE;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .settings {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+        
+        .theme-buttons {
+            margin: 5px 0;
+        }
+        
+        .theme-btn {
+            margin-right: 5px;
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+        
+        .color-picker {
+            margin: 5px 0;
+        }
+
+        .thread-container {
+            border: 1px solid #8B8B8B;
+            margin: 10px 0;
+        }
+
+        .thread-header {
+            background: #E04040;
+            color: #FFFFFF;
+            padding: 3px;
+            font-weight: normal;
+            font-size: 100%;
+            margin: 0;
+        }
+
+        .thread-info {
+            background: #F0E0D6;
+            padding: 5px;
+            font-size: 90%;
+            border-bottom: 1px solid #8B8B8B;
+        }
+
+        .post {
+            padding: 5px;
+            border-bottom: 1px solid #8B8B8B;
+            background: #FFFFFF;
+        }
+
+        .post:last-child {
+            border-bottom: none;
+        }
+
+        .post-header {
+            background: #F0E0D6;
+            padding: 3px;
+            font-size: 90%;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .post-content {
+            padding: 5px;
+            margin: 5px 0;
+        }
+
+        .post-footer {
+            font-size: 85%;
+            color: #707070;
+            margin-top: 5px;
+        }
+
+        .reply-form {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+
+        .reply-form textarea {
+            width: 98%;
+            height: 100px;
+            margin: 5px 0;
+            font-family: "MS PGothic", Arial, sans-serif;
+        }
+
+        .submit-btn {
+            background: #E04040;
+            color: white;
+            border: none;
+            padding: 3px 10px;
+            cursor: pointer;
+            font-family: "MS PGothic", Arial, sans-serif;
+        }
+
+        .submit-btn:hover {
+            background: #C03030;
+        }
+
+        .post-number {
+            color: #117743;
+            font-weight: bold;
+        }
+
+        .user-name {
+            color: #117743;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-header">
+        <h1 style="font-size: 100%; margin: 0;">Anime Forum - Thread View</h1>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="rules.html">Rules</a>
+        <a href="help.html">Help</a>
+    </div>
+
+    <div class="settings">
+        <div>Theme:</div>
+        <div class="theme-buttons">
+            <button class="theme-btn" onclick="setTheme('#FFFFEC')">Classic</button>
+            <button class="theme-btn" onclick="setTheme('#E0FFE0')">Mint</button>
+            <button class="theme-btn" onclick="setTheme('#FFE0E0')">Sakura</button>
+            <button class="theme-btn" onclick="setTheme('#E0E0FF')">Sky</button>
+        </div>
+        <div>
+            <label for="bgcolor">Custom Color:</label>
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC" 
+                   oninput="setTheme(this.value)">
+        </div>
+    </div>
+
+    <div class="thread-container">
+        <h2 class="thread-header">First Impressions: Newest Anime Season</h2>
+        <div class="thread-info">
+            Started by: <span class="user-name">AnimeUser123</span> | Views: 1,234 | Replies: 25
+        </div>
+
+        <div class="post">
+            <div class="post-header">
+                <span class="post-number">#1</span>
+                <span class="user-name">AnimeUser123</span>
+                <span>2024-12-30 14:30</span>
+            </div>
+            <div class="post-content">
+                What are your thoughts on the new anime season? I've watched the first episodes of several shows and here are my initial impressions...
+            </div>
+            <div class="post-footer">
+                Posted from: Tokyo | User Level: Regular
+            </div>
+        </div>
+
+        <div class="post">
+            <div class="post-header">
+                <span class="post-number">#2</span>
+                <span class="user-name">AnimeFan456</span>
+                <span>2024-12-30 14:45</span>
+            </div>
+            <div class="post-content">
+                >>1 I agree with most of your points! The animation quality in the new mecha series is incredible. However, I think the slice of life show needs a few more episodes to really get going.
+            </div>
+            <div class="post-footer">
+                Posted from: Osaka | User Level: Veteran
+            </div>
+        </div>
+    </div>
+
+    <div class="reply-form">
+        <form onsubmit="return handleReply(event)">
+            <div>Name: <input type="text" size="20"></div>
+            <div><textarea placeholder="Write your reply here..."></textarea></div>
+            <div><input type="submit" value="Post Reply" class="submit-btn"></div>
+        </form>
+    </div>
+
+    <script>
+        function setTheme(color) {
+            document.documentElement.style.setProperty('--bg-color', color);
+            document.getElementById('bgcolor').value = color;
+        }
+
+        function handleReply(event) {
+            event.preventDefault();
+            // In a real implementation, you would handle the reply submission here
+            alert("Reply would be submitted here!");
+            return false;
+        }
+    </script>
+</body>
+</html>
