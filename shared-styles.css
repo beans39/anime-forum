@@ -1,0 +1,131 @@
+/* styles.css */
+:root {
+    --bg-color: #FFFFEC;
+}
+
+/* Base styles */
+body {
+    font-family: "MS PGothic", Arial, sans-serif;
+    background: var(--bg-color);
+    color: #000;
+    line-height: 1.5;
+    margin: 8px;
+    padding: 0;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Header styles */
+.site-header {
+    border: 1px solid #8B8B8B;
+    padding: 5px;
+    background: #F0E0D6;
+    margin-bottom: 10px;
+}
+
+.site-header h1 {
+    font-size: 100%;
+    margin: 0;
+}
+
+/* Navigation */
+.nav-links {
+    margin: 10px 0;
+    font-size: 90%;
+}
+
+.nav-links a {
+    color: #0000EE;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Theme selector */
+.settings {
+    border: 1px solid #8B8B8B;
+    padding: 5px;
+    margin: 10px 0;
+    background: #F0E0D6;
+}
+
+.theme-buttons {
+    margin: 5px 0;
+}
+
+.theme-btn {
+    margin-right: 5px;
+    padding: 2px 8px;
+    cursor: pointer;
+}
+
+.color-picker {
+    margin: 5px 0;
+}
+
+/* Common content boxes */
+.content-box {
+    border: 1px solid #8B8B8B;
+    margin: 10px 0;
+    background: #FFFFFF;
+}
+
+.content-header {
+    background: #E04040;
+    color: #FFFFFF;
+    padding: 3px;
+    font-weight: normal;
+    font-size: 100%;
+    margin: 0;
+}
+
+.content-body {
+    padding: 10px;
+}
+
+/* Common form styles */
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 90%;
+}
+
+.form-input {
+    width: 100%;
+    max-width: 400px;
+    font-family: "MS PGothic", Arial, sans-serif;
+    padding: 2px;
+}
+
+.submit-btn {
+    background: #E04040;
+    color: white;
+    border: none;
+    padding: 3px 10px;
+    cursor: pointer;
+    font-family: "MS PGothic", Arial, sans-serif;
+}
+
+/* Utility classes */
+.bg-secondary {
+    background: #F0E0D6;
+}
+
+.border-standard {
+    border: 1px solid #8B8B8B;
+}
+
+.text-small {
+    font-size: 90%;
+}
+
+.text-smaller {
+    font-size: 85%;
+}
