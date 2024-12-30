@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Anime Forum</title>
+    <style>
+        :root {
+            --bg-color: #FFFFEC;
+        }
+        
+        body {
+            font-family: "MS PGothic", Arial, sans-serif;
+            background: var(--bg-color);
+            color: #000;
+            line-height: 1.5;
+            margin: 8px;
+            padding: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .site-header {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            background: #F0E0D6;
+            margin-bottom: 10px;
+        }
+        
+        .nav-links {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+        
+        .nav-links a {
+            color: #0000EE;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .settings {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+        
+        .theme-buttons {
+            margin: 5px 0;
+        }
+        
+        .theme-btn {
+            margin-right: 5px;
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+        
+        .color-picker {
+            margin: 5px 0;
+        }
+
+        .search-container {
+            border: 1px solid #8B8B8B;
+            margin: 10px 0;
+        }
+
+        .search-header {
+            background: #E04040;
+            color: #FFFFFF;
+            padding: 3px;
+            font-weight: normal;
+            font-size: 100%;
+            margin: 0;
+        }
+
+        .search-form {
+            background: #F0E0D6;
+            padding: 10px;
+            border-bottom: 1px solid #8B8B8B;
+        }
+
+        .search-group {
+            margin-bottom: 8px;
+        }
+
+        .search-group label {
+            display: inline-block;
+            width: 100px;
+            font-size: 90%;
+        }
+
+        .search-input {
+            font-family: "MS PGothic", Arial, sans-serif;
+            padding: 2px;
+            width: 300px;
+        }
+
+        .search-options {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+
+        .option-group {
+            margin: 5px 0;
+        }
+
+        .search-btn {
+            background: #E04040;
+            color: white;
+            border: none;
+            padding: 3px 10px;
+            cursor: pointer;
+            font-family: "MS PGothic", Arial, sans-serif;
+        }
+
+        .search-results {
+            background: #FFFFFF;
+        }
+
+        .result-item {
+            padding: 8px;
+            border-bottom: 1px solid #8B8B8B;
+            font-size: 90%;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-title {
+            color: #0000EE;
+            text-decoration: none;
+        }
+
+        .result-snippet {
+            margin: 5px 0;
+            font-size: 90%;
+        }
+
+        .result-meta {
+            color: #707070;
+            font-size: 85%;
+        }
+
+        .highlight {
+            background: #FFFF00;
+            padding: 0 2px;
+        }
+
+        .pagination {
+            text-align: center;
+            padding: 10px;
+            font-size: 90%;
+        }
+
+        .page-link {
+            display: inline-block;
+            padding: 2px 8px;
+            margin: 0 2px;
+            border: 1px solid #8B8B8B;
+            text-decoration: none;
+            color: #0000EE;
+        }
+
+        .page-link.active {
+            background: #E04040;
+            color: #FFFFFF;
+            border-color: #E04040;
+        }
+
+        select {
+            font-family: "MS PGothic", Arial, sans-serif;
+            font-size: 90%;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-header">
+        <h1 style="font-size: 100%; margin: 0;">Anime Forum - Search</h1>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="rules.html">Rules</a>
+        <a href="help.html">Help</a>
+    </div>
+
+    <div class="settings">
+        <div>Theme:</div>
+        <div class="theme-buttons">
+            <button class="theme-btn" onclick="setTheme('#FFFFEC')">Classic</button>
+            <button class="theme-btn" onclick="setTheme('#E0FFE0')">Mint</button>
+            <button class="theme-btn" onclick="setTheme('#FFE0E0')">Sakura</button>
+            <button class="theme-btn" onclick="setTheme('#E0E0FF')">Sky</button>
+        </div>
+        <div>
+            <label for="bgcolor">Custom Color:</label>
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC" 
+                   oninput="setTheme(this.value)">
+        </div>
+    </div>
+
+    <div class="search-container">
+        <h2 class="search-header">Advanced Search</h2>
+        
+        <form class="search-form" onsubmit="return handleSearch(event)">
+            <div class="search-group">
+                <label>Keywords:</label>
+                <input type="text" class="search-input" placeholder="Enter search terms...">
+            </div>
+
+            <div class="search-group">
+                <label>Username:</label>
+                <input type="text" class="search-input" placeholder="Search by user...">
+            </div>
+
+            <div class="search-group">
+                <label>Category:</label>
+                <select>
+                    <option value="all">All Categories</option>
+                    <option value="general">General Anime</option>
+                    <option value="seasonal">Seasonal Anime</option>
+                    <option value="va">Voice Actors</option>
+                    <option value="manga">Manga Discussion</option>
+                </select>
+            </div>
+
+            <div class="search-options">
+                <div class="option-group">
+                    <label>Search in:</label>
+                    <label><input type="checkbox" checked> Titles</label>
+                    <label><input type="checkbox" checked> Content</label>
+                    <label><input type="checkbox"> Tags</label>
+                </div>
+
+                <div class="option-group">
+                    <label>Time period:</label>
+                    <select>
+                        <option value="any">Any time</option>
+                        <option value="day">Past 24 hours</option>
+                        <option value="week">Past week</option>
+                        <option value="month">Past month</option>
+                        <option value="year">Past year</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label>Sort by:</label>
+                    <select>
+                        <option value="relevance">Relevance</option>
+                        <option value="date">Date</option>
+                        <option value="replies">Number of replies</option>
+                        <option value="views">Views</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+
+        <div class="search-results">
+            <div class="result-item">
+                <a href="#" class="result-title">Winter 2024 Anime Discussion</a>
+                <div class="result-snippet">
+                    ... the new season looks amazing! I'm particularly excited about the new <span class="highlight">mecha</span> series...
+                </div>
+                <div class="result-meta">
+                    Category: General Anime • Posted by: AnimeUser123 • 2024-12-30 14:30
+                </div>
+            </div>
+
+            <div class="result-item">
+                <a href="#" class="result-title">Best Animation Studios of 2024</a>
+                <div class="result-snippet">
+                    ... their attention to detail in the <span class="highlight">mecha</span> designs is unparalleled...
+                </div>
+                <div class="result-meta">
+                    Category: Industry Discussion • Posted by: AnimeFan456 • 2024-12-29 16:45
+                </div>
+            </div>
+
+            <div class="result-item">
+                <a href="#" class="result-title">Classic Mecha Series Retrospective</a>
+                <div class="result-snippet">
+                    Looking back at the evolution of <span class="highlight">mecha</span> anime from the 80s to now...
+                </div>
+                <div class="result-meta">
+                    Category: Anime History • Posted by: RetroFan • 2024-12-28 09:15
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <a href="#" class="page-link">←</a>
+            <a href="#" class="page-link active">1</a>
+            <a href="#" class="page-link">2</a>
+            <a href="#" class="page-link">3</a>
+            <span>...</span>
+            <a href="#" class="page-link">12</a>
+            <a href="#" class="page-link">→</a>
+        </div>
+    </div>
+
+    <script>
+        function setTheme(color) {
+            document.documentElement.style.setProperty('--bg-color', color);
+            document.getElementById('bgcolor').value = color;
+        }
+
+        function handleSearch(event) {
+            event.preventDefault();
+            // In a real implementation, this would perform the search
+            alert("Search would be performed here!");
+            return false;
+        }
+    </script>
+</body>
+</html>

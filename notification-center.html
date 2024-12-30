@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Anime Forum</title>
+    <style>
+        :root {
+            --bg-color: #FFFFEC;
+        }
+        
+        /* [Previous standard styles] */
+        
+        .notification-list {
+            border: 1px solid #8B8B8B;
+        }
+
+        .notification-item {
+            padding: 8px;
+            border-bottom: 1px solid #8B8B8B;
+            background: #FFFFFF;
+        }
+
+        .notification-item.unread {
+            background: #FFF0F0;
+        }
+
+        .notification-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            background: #E04040;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+        }
+
+        .notification-meta {
+            color: #707070;
+            font-size: 85%;
+            margin-top: 3px;
+        }
+
+        .notification-filters {
+            background: #F0E0D6;
+            padding: 5px;
+            margin: 10px 0;
+            border: 1px solid #8B8B8B;
+        }
+    </style>
+</head>
+<body>
+    <!-- [Standard header and navigation] -->
+
+    <div class="notification-filters">
+        <button class="filter-btn">All</button>
+        <button class="filter-btn">Replies</button>
+        <button class="filter-btn">Mentions</button>
+        <button class="filter-btn">System</button>
+    </div>
+
+    <div class="notification-list">
+        <!-- Notification items -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Messages - Anime Forum</title>
+    <style>
+        :root {
+            --bg-color: #FFFFEC;
+        }
+        
+        body {
+            font-family: "MS PGothic", Arial, sans-serif;
+            background: var(--bg-color);
+            color: #000;
+            line-height: 1.5;
+            margin: 8px;
+            padding: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .site-header {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            background: #F0E0D6;
+            margin-bottom: 10px;
+        }
+        
+        .nav-links {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+        
+        .nav-links a {
+            color: #0000EE;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .settings {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+
+        .theme-buttons {
+            margin: 5px 0;
+        }
+        
+        .theme-btn {
+            margin-right: 5px;
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+        
+        .color-picker {
+            margin: 5px 0;
+        }
+
+        .pm-container {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .pm-sidebar {
+            flex: 0 0 200px;
+        }
+
+        .pm-main {
+            flex: 1;
+        }
+
+        .folder-menu {
+            border: 1px solid #8B8B8B;
+            background: #F0E0D6;
+        }
+
+        .folder-header {
+            background: #E04040;
+            color: #FFFFFF;
+            padding: 3px;
+            font-weight: normal;
+            font-size: 100%;
+            margin: 0;
+        }
+
+        .folder-links a {
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            color: #000000;
+            font-size: 90%;
+            border-bottom: 1px solid #8B8B8B;
+        }
+
+        .folder-links a:hover {
+            background: #FFFFFF;
+        }
+
+        .folder-links a.active {
+            background: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .message-counter {
+            float: right;
+            background: #E04040;
+            color: white;
+            padding: 0 5px;
+            border-radius: 10px;
+            font-size: 85%;
+        }
+
+        .message-list {
+            border: 1px solid #8B8B8B;
+            background: #FFFFFF;
+        }
+
+        .message-list-header {
+            background: #E04040;
+            color: #FFFFFF;
+            padding: 3px;
+            font-weight: normal;
+            font-size: 100%;
+            margin: 0;
+        }
+
+        .message-item {
+            padding: 8px;
+            border-bottom: 1px solid #8B8B8B;
+            font-size: 90%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .message-item:hover {
+            background: #F0E0D6;
+        }
+
+        .message-item.unread {
+            background: #FFF0F0;
+        }
+
+        .message-checkbox {
+            flex: 0 0 20px;
+        }
+
+        .message-content {
+            flex: 1;
+        }
+
+        .message-title {
+            color: #0000EE;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .message-meta {
+            color: #707070;
+            font-size: 85%;
+            margin-top: 3px;
+        }
+
+        .message-actions {
+            padding: 5px;
+            background: #F0E0D6;
+            border: 1px solid #8B8B8B;
+            margin-bottom: 10px;
+        }
+
+        .action-btn {
+            background: #E04040;
+            color: white;
+            border: none;
+            padding: 2px 8px;
+            cursor: pointer;
+            font-family: "MS PGothic", Arial, sans-serif;
+            font-size: 90%;
+            margin-right: 5px;
+        }
+
+        .compose-form {
+            border: 1px solid #8B8B8B;
+            background: #FFFFFF;
+            padding: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 90%;
+        }
+
+        .form-input {
+            font-family: "MS PGothic", Arial, sans-serif;
+            padding: 2px;
+            width: 100%;
+        }
+
+        .form-textarea {
+            font-family: "MS PGothic", Arial, sans-serif;
+            padding: 2px;
+            width: 100%;
+            height: 200px;
+        }
+
+        .message-view {
+            border: 1px solid #8B8B8B;
+            background: #FFFFFF;
+        }
+
+        .message-header {
+            background: #F0E0D6;
+            padding: 10px;
+            border-bottom: 1px solid #8B8B8B;
+        }
+
+        .message-body {
+            padding: 10px;
+            line-height: 1.6;
+        }
+
+        .reply-box {
+            border-top: 1px solid #8B8B8B;
+            padding: 10px;
+            background: #F0E0D6;
+        }
+
+        .pagination {
+            text-align: center;
+            padding: 10px;
+            font-size: 90%;
+        }
+
+        .page-link {
+            display: inline-block;
+            padding: 2px 8px;
+            margin: 0 2px;
+            border: 1px solid #8B8B8B;
+            text-decoration: none;
+            color: #0000EE;
+        }
+
+        .page-link.active {
+            background: #E04040;
+            color: #FFFFFF;
+            border-color: #E04040;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-header">
+        <h1 style="font-size: 100%; margin: 0;">Anime Forum - Private Messages</h1>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="rules.html">Rules</a>
+        <a href="help.html">Help</a>
+    </div>
+
+    <div class="settings">
+        <div>Theme:</div>
+        <div class="theme-buttons">
+            <button class="theme-btn" onclick="setTheme('#FFFFEC')">Classic</button>
+            <button class="theme-btn" onclick="setTheme('#E0FFE0')">Mint</button>
+            <button class="theme-btn" onclick="setTheme('#FFE0E0')">Sakura</button>
+            <button class="theme-btn" onclick="setTheme('#E0E0FF')">Sky</button>
+        </div>
+        <div>
+            <label for="bgcolor">Custom Color:</label>
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC" 
+                   oninput="setTheme(this.value)">
+        </div>
+    </div>
+
+    <div class="pm-container">
+        <div class="pm-sidebar">
+            <div class="folder-menu">
+                <h2 class="folder-header">Message Folders</h2>
+                <div class="folder-links">
+                    <a href="#" class="active">Inbox <span class="message-counter">3</span></a>
+                    <a href="#">Sent Messages</a>
+                    <a href="#">Drafts <span class="message-counter">1</span></a>
+                    <a href="#">Trash</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pm-main">
+            <div class="message-actions">
+                <button class="action-btn">New Message</button>
+                <button class="action-btn">Delete</button>
+                <button class="action-btn">Mark Read</button>
+                <button class="action-btn">Move to...</button>
+            </div>
+
+            <div class="message-list">
+                <h2 class="message-list-header">Inbox</h2>
+                
+                <div class="message-item unread">
+                    <div class="message-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="message-content">
+                        <a href="#" class="message-title">Re: Anime Recommendations</a>
+                        <div class="message-meta">
+                            From: AnimeFan456 • 2024-12-30 14:30
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-item unread">
+                    <div class="message-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="message-content">
+                        <a href="#" class="message-title">Question about your post</a>
+                        <div class="message-meta">
+                            From: OtakuExpert • 2024-12-30 13:15
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-item">
+                    <div class="message-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="message-content">
+                        <a href="#" class="message-title">Forum Event Information</a>
+                        <div class="message-meta">
+                            From: Moderator1 • 2024-12-29 18:45
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="page-link">←</a>
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <span>...</span>
+                <a href="#" class="page-link">8</a>
+                <a href="#" class="page-link">→</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setTheme(color) {
+            document.documentElement.style.setProperty('--bg-color', color);
+            document.getElementById('bgcolor').value = color;
+        }
+    </script>
+</body>
+</html>

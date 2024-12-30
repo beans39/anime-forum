@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderator Control Panel - Anime Forum</title>
+    <style>
+        :root {
+            --bg-color: #FFFFEC;
+        }
+        
+        body {
+            font-family: "MS PGothic", Arial, sans-serif;
+            background: var(--bg-color);
+            color: #000;
+            line-height: 1.5;
+            margin: 8px;
+            padding: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .site-header {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            background: #F0E0D6;
+            margin-bottom: 10px;
+        }
+        
+        .nav-links {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+        
+        .nav-links a {
+            color: #0000EE;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .settings {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+        
+        .theme-buttons {
+            margin: 5px 0;
+        }
+        
+        .theme-btn {
+            margin-right: 5px;
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+        
+        .color-picker {
+            margin: 5px 0;
+        }
+
+        .mod-dashboard {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .mod-sidebar {
+            flex: 0 0 200px;
+        }
+
+        .mod-main {
+            flex: 1;
+        }
+
+        .mod-menu {
+            border: 1px solid #8B8B8B;
+            background: #F0E0D6;
+        }
+
+        .mod-menu-header {
+            background: #E04040;
+            color: #FFFFFF;
+            padding: 3px;
+            font-weight: normal;
+            font-size: 100%;
+            margin: 0;
+        }
+
+        .mod-menu a {
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            color: #000000;
+            font-size: 90%;
+            border-bottom: 1px solid #8B8B8B;
+        }
+
+        .mod-menu a:hover {
+            background: #FFFFFF;
+        }
+
+        .mod-menu a.active {
+            background: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .mod-panel {
+            border: 1px solid #8B8B8B;
+        }
+
+        .mod-panel-header {
+            background: #E04040;
+            color: #FFFFFF;
+            padding: 3px;
+            font-weight: normal;
+            font-size: 100%;
+            margin: 0;
+        }
+
+        .mod-panel-content {
+            background: #FFFFFF;
+            padding: 10px;
+        }
+
+        .report-item {
+            border: 1px solid #8B8B8B;
+            margin: 5px 0;
+            padding: 5px;
+            background: #F0E0D6;
+            font-size: 90%;
+        }
+
+        .report-meta {
+            color: #707070;
+            font-size: 85%;
+            margin-top: 3px;
+        }
+
+        .report-actions {
+            margin-top: 5px;
+        }
+
+        .mod-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .stat-box {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            text-align: center;
+            background: #F0E0D6;
+        }
+
+        .stat-number {
+            font-size: 150%;
+            color: #E04040;
+        }
+
+        .stat-label {
+            font-size: 85%;
+        }
+
+        .warning-history {
+            margin-top: 10px;
+        }
+
+        .warning-item {
+            border: 1px solid #8B8B8B;
+            margin: 5px 0;
+            padding: 5px;
+            background: #F0E0D6;
+            font-size: 90%;
+        }
+
+        .action-btn {
+            background: #E04040;
+            color: white;
+            border: none;
+            padding: 2px 8px;
+            cursor: pointer;
+            font-family: "MS PGothic", Arial, sans-serif;
+            font-size: 85%;
+            margin-right: 5px;
+        }
+
+        .action-btn.warning {
+            background: #FFA500;
+        }
+
+        .action-btn.ban {
+            background: #800000;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-header">
+        <h1 style="font-size: 100%; margin: 0;">Anime Forum - Moderator Control Panel</h1>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="rules.html">Rules</a>
+        <a href="help.html">Help</a>
+    </div>
+
+    <div class="settings">
+        <div>Theme:</div>
+        <div class="theme-buttons">
+            <button class="theme-btn" onclick="setTheme('#FFFFEC')">Classic</button>
+            <button class="theme-btn" onclick="setTheme('#E0FFE0')">Mint</button>
+            <button class="theme-btn" onclick="setTheme('#FFE0E0')">Sakura</button>
+            <button class="theme-btn" onclick="setTheme('#E0E0FF')">Sky</button>
+        </div>
+        <div>
+            <label for="bgcolor">Custom Color:</label>
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC" 
+                   oninput="setTheme(this.value)">
+        </div>
+    </div>
+
+    <div class="mod-dashboard">
+        <div class="mod-sidebar">
+            <div class="mod-menu">
+                <h2 class="mod-menu-header">Moderation Tools</h2>
+                <a href="#" class="active">Dashboard</a>
+                <a href="#">Reported Content</a>
+                <a href="#">User Management</a>
+                <a href="#">Ban List</a>
+                <a href="#">Thread Management</a>
+                <a href="#">Category Management</a>
+                <a href="#">Mod Logs</a>
+            </div>
+        </div>
+
+        <div class="mod-main">
+            <div class="mod-panel">
+                <h2 class="mod-panel-header">Moderation Overview</h2>
+                <div class="mod-panel-content">
+                    <div class="mod-stats">
+                        <div class="stat-box">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Reports Pending</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Users Warned Today</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Active Bans</div>
+                        </div>
+                    </div>
+
+                    <div class="report-list">
+                        <h3 class="mod-panel-header">Recent Reports</h3>
+                        
+                        <div class="report-item">
+                            <div>Reported Post: "This content violates forum rules..."</div>
+                            <div class="report-meta">
+                                Reported by: User123 | Thread: Anime Discussion | 5 minutes ago
+                            </div>
+                            <div class="report-actions">
+                                <button class="action-btn">View</button>
+                                <button class="action-btn warning">Warn</button>
+                                <button class="action-btn">Delete</button>
+                                <button class="action-btn ban">Ban</button>
+                            </div>
+                        </div>
+
+                        <div class="report-item">
+                            <div>Reported User: "Spamming multiple threads"</div>
+                            <div class="report-meta">
+                                Reported by: Mod1 | User: SpamBot | 15 minutes ago
+                            </div>
+                            <div class="report-actions">
+                                <button class="action-btn">View</button>
+                                <button class="action-btn warning">Warn</button>
+                                <button class="action-btn">Delete</button>
+                                <button class="action-btn ban">Ban</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="warning-history">
+                        <h3 class="mod-panel-header">Recent Actions</h3>
+                        
+                        <div class="warning-item">
+                            <div>Warning issued to User456</div>
+                            <div class="report-meta">
+                                By: Moderator1 | Reason: Inappropriate language | 1 hour ago
+                            </div>
+                        </div>
+
+                        <div class="warning-item">
+                            <div>Thread locked: "Controversial Discussion"</div>
+                            <div class="report-meta">
+                                By: Moderator2 | Reason: Off-topic derailment | 2 hours ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setTheme(color) {
+            document.documentElement.style.setProperty('--bg-color', color);
+            document.getElementById('bgcolor').value = color;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Control Panel - Anime Forum</title>
+    <style>
+        :root {
+            --bg-color: #FFFFEC;
+        }
+        
+        body {
+            font-family: "MS PGothic", Arial, sans-serif;
+            background: var(--bg-color);
+            color: #000;
+            line-height: 1.5;
+            margin: 8px;
+            padding: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .site-header {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            background: #F0E0D6;
+            margin-bottom: 10px;
+        }
+        
+        .nav-links {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+        
+        .nav-links a {
+            color: #0000EE;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .settings {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+
+        .theme-buttons {
+            margin: 5px 0;
+        }
+        
+        .theme-btn {
+            margin-right: 5px;
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+        
+        .color-picker {
+            margin: 5px 0;
+        }
+
+        .control-panel {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .panel-sidebar {
+            flex: 0 0 200px;
+        }
+
+        .panel-main {
+            flex: 1;
+        }
+
+        .menu-container {
+            border: 1px solid #8B8B8B;
+            background: #F0E0D6;
+        }
+
+        .menu-header {
+            background: #E04040;
+            color: #FFFFFF;
+            padding: 3px;
+            font-weight: normal;
+            font-size: 100%;
+            margin: 0;
+        }
+
+        .menu-links a {
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            color: #000000;
+            font-size: 90%;
+            border-bottom: 1px solid #8B8B8B;
+        }
+
+        .menu-links a:hover {
+            background: #FFFFFF;
+        }
+
+        .menu-links a.active {
+            background: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .settings-panel {
+            border: 1px solid #8B8B8B;
+        }
+
+        .settings-header {
+            background: #E04040;
+            color: #FFFFFF;
+            padding: 3px;
+            font-weight: normal;
+            font-size: 100%;
+            margin: 0;
+        }
+
+        .settings-form {
+            background: #FFFFFF;
+            padding: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 90%;
+        }
+
+        .form-input {
+            font-family: "MS PGothic", Arial, sans-serif;
+            padding: 2px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .form-textarea {
+            font-family: "MS PGothic", Arial, sans-serif;
+            padding: 2px;
+            width: 100%;
+            max-width: 500px;
+            height: 100px;
+        }
+
+        .privacy-options {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+
+        .notification-options {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+
+        .save-btn {
+            background: #E04040;
+            color: white;
+            border: none;
+            padding: 3px 10px;
+            cursor: pointer;
+            font-family: "MS PGothic", Arial, sans-serif;
+        }
+
+        .save-btn:hover {
+            background: #C03030;
+        }
+
+        .settings-section {
+            margin-bottom: 15px;
+            border: 1px solid #8B8B8B;
+            padding: 10px;
+            background: #F0E0D6;
+        }
+
+        .settings-section h3 {
+            font-size: 100%;
+            margin: 0 0 10px 0;
+            color: #117743;
+        }
+
+        .hint-text {
+            font-size: 85%;
+            color: #666666;
+            margin-top: 2px;
+        }
+
+        .avatar-preview {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #8B8B8B;
+            margin: 5px 0;
+            background: #FFFFFF;
+        }
+
+        .option-group {
+            margin: 5px 0;
+        }
+
+        .warning-text {
+            color: #E04040;
+            font-size: 85%;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-header">
+        <h1 style="font-size: 100%; margin: 0;">Anime Forum - User Control Panel</h1>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="rules.html">Rules</a>
+        <a href="help.html">Help</a>
+    </div>
+
+    <div class="settings">
+        <div>Theme:</div>
+        <div class="theme-buttons">
+            <button class="theme-btn" onclick="setTheme('#FFFFEC')">Classic</button>
+            <button class="theme-btn" onclick="setTheme('#E0FFE0')">Mint</button>
+            <button class="theme-btn" onclick="setTheme('#FFE0E0')">Sakura</button>
+            <button class="theme-btn" onclick="setTheme('#E0E0FF')">Sky</button>
+        </div>
+        <div>
+            <label for="bgcolor">Custom Color:</label>
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC" 
+                   oninput="setTheme(this.value)">
+        </div>
+    </div>
+
+    <div class="control-panel">
+        <div class="panel-sidebar">
+            <div class="menu-container">
+                <h2 class="menu-header">Control Panel</h2>
+                <div class="menu-links">
+                    <a href="#" class="active">Account Settings</a>
+                    <a href="#">Profile Settings</a>
+                    <a href="#">Privacy Settings</a>
+                    <a href="#">Notification Settings</a>
+                    <a href="#">Avatar Settings</a>
+                    <a href="#">Password & Security</a>
+                    <a href="#">Connected Accounts</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-main">
+            <div class="settings-panel">
+                <h2 class="settings-header">Account Settings</h2>
+                
+                <form class="settings-form" onsubmit="return handleSave(event)">
+                    <div class="settings-section">
+                        <h3>Basic Information</h3>
+                        <div class="form-group">
+                            <label>Username:</label>
+                            <input type="text" class="form-input" value="AnimeUser123">
+                            <div class="hint-text">Cannot be changed without moderator approval</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email Address:</label>
+                            <input type="email" class="form-input" value="user@example.com">
+                            <div class="hint-text">Used for notifications and password recovery</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Display Name:</label>
+                            <input type="text" class="form-input" value="Anime Enthusiast">
+                            <div class="hint-text">Shown instead of username in posts</div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Profile Customization</h3>
+                        <div class="form-group">
+                            <label>Avatar:</label>
+                            <div class="avatar-preview">
+                                <img src="/api/placeholder/100/100" alt="Current Avatar">
+                            </div>
+                            <input type="file" accept="image/*">
+                            <div class="hint-text">Max size: 500KB, Format: JPG, PNG</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>About Me:</label>
+                            <textarea class="form-textarea">Anime fan since 2010. Love discussing series and sharing recommendations!</textarea>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Privacy Settings</h3>
+                        <div class="privacy-options">
+                            <div class="option-group">
+                                <label>
+                                    <input type="checkbox" checked> Show online status
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label>
+                                    <input type="checkbox" checked> Allow friend requests
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label>
+                                    <input type="checkbox" checked> Show post history
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Notification Settings</h3>
+                        <div class="notification-options">
+                            <div class="option-group">
+                                <label>
+                                    <input type="checkbox" checked> Email notifications for replies
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label>
+                                    <input type="checkbox" checked> Email notifications for private messages
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label>
+                                    <input type="checkbox"> Email digest of forum activity
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Forum Preferences</h3>
+                        <div class="form-group">
+                            <label>Threads per page:</label>
+                            <select class="form-input">
+                                <option>10</option>
+                                <option selected>20</option>
+                                <option>30</option>
+                                <option>50</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Default theme:</label>
+                            <select class="form-input">
+                                <option selected>Classic</option>
+                                <option>Mint</option>
+                                <option>Sakura</option>
+                                <option>Sky</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="save-btn">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setTheme(color) {
+            document.documentElement.style.setProperty('--bg-color', color);
+            document.getElementById('bgcolor').value = color;
+        }
+
+        function handleSave(event) {
+            event.preventDefault();
+            // In a real implementation, this would save the settings
+            alert("Settings would be saved here!");
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Editor - Anime Forum</title>
+    <style>
+        :root {
+            --bg-color: #FFFFEC;
+        }
+        
+        /* [Previous standard styles] */
+        
+        .editor-container {
+            border: 1px solid #8B8B8B;
+        }
+
+        .editor-toolbar {
+            background: #F0E0D6;
+            padding: 5px;
+            border-bottom: 1px solid #8B8B8B;
+        }
+
+        .toolbar-btn {
+            background: #E04040;
+            color: white;
+            border: none;
+            padding: 2px 8px;
+            margin-right: 3px;
+            cursor: pointer;
+        }
+
+        .editor-area {
+            width: 100%;
+            min-height: 200px;
+            padding: 10px;
+            font-family: "MS PGothic", Arial, sans-serif;
+        }
+
+        .formatting-guide {
+            border: 1px solid #8B8B8B;
+            margin-top: 10px;
+        }
+
+        .guide-header {
+            background: #E04040;
+            color: #FFFFFF;
+            padding: 3px;
+        }
+
+        .guide-content {
+            padding: 10px;
+            background: #FFFFFF;
+        }
+
+        .code-example {
+            background: #F0E0D6;
+            padding: 5px;
+            margin: 5px 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- [Standard header and navigation] -->
+
+    <div class="editor-container">
+        <div class="editor-toolbar">
+            <button class="toolbar-btn">B</button>
+            <button class="toolbar-btn">I</button>
+            <button class="toolbar-btn">URL</button>
+            <button class="toolbar-btn">IMG</button>
+            <button class="toolbar-btn">Quote</button>
+            <button class="toolbar-btn">Code</button>
+            <button class="toolbar-btn">Spoiler</button>
+        </div>
+        <textarea class="editor-area" placeholder="Write your post here..."></textarea>
+    </div>
+
+    <div class="formatting-guide">
+        <h2 class="guide-header">Formatting Guide</h2>
+        <div class="guide-content">
+            <!-- Formatting examples -->
+        </div>
+    </div>
+</body>
+</html>

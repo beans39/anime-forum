@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found - Anime Forum</title>
+    <style>
+        :root {
+            --bg-color: #FFFFEC;
+        }
+        
+        body {
+            font-family: "MS PGothic", Arial, sans-serif;
+            background: var(--bg-color);
+            color: #000;
+            line-height: 1.5;
+            margin: 8px;
+            padding: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .site-header {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            background: #F0E0D6;
+            margin-bottom: 10px;
+        }
+        
+        .nav-links {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+        
+        .nav-links a {
+            color: #0000EE;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .settings {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+        
+        .theme-buttons {
+            margin: 5px 0;
+        }
+        
+        .theme-btn {
+            margin-right: 5px;
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+        
+        .color-picker {
+            margin: 5px 0;
+        }
+
+        .error-container {
+            border: 1px solid #8B8B8B;
+            background: #F0E0D6;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .error-code {
+            font-size: 150%;
+            color: #E04040;
+            margin-bottom: 10px;
+        }
+
+        .error-message {
+            margin: 15px 0;
+        }
+
+        .helpful-links {
+            background: #FFFFFF;
+            border: 1px solid #8B8B8B;
+            padding: 10px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .helpful-links h3 {
+            font-size: 100%;
+            margin: 0 0 10px 0;
+            color: #E04040;
+        }
+
+        .helpful-links ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 90%;
+        }
+
+        .search-box {
+            margin: 15px 0;
+        }
+
+        .search-input {
+            padding: 3px;
+            font-family: "MS PGothic", Arial, sans-serif;
+        }
+
+        .search-btn {
+            background: #E04040;
+            color: white;
+            border: none;
+            padding: 3px 10px;
+            cursor: pointer;
+            font-family: "MS PGothic", Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-header">
+        <h1 style="font-size: 100%; margin: 0;">Anime Forum - Page Not Found</h1>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="rules.html">Rules</a>
+        <a href="help.html">Help</a>
+    </div>
+
+    <div class="settings">
+        <div>Theme:</div>
+        <div class="theme-buttons">
+            <button class="theme-btn" onclick="setTheme('#FFFFEC')">Classic</button>
+            <button class="theme-btn" onclick="setTheme('#E0FFE0')">Mint</button>
+            <button class="theme-btn" onclick="setTheme('#FFE0E0')">Sakura</button>
+            <button class="theme-btn" onclick="setTheme('#E0E0FF')">Sky</button>
+        </div>
+        <div>
+            <label for="bgcolor">Custom Color:</label>
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC" 
+                   oninput="setTheme(this.value)">
+        </div>
+    </div>
+
+    <div class="error-container">
+        <div class="error-code">404 - Page Not Found</div>
+        <div class="error-message">
+            The page you're looking for doesn't exist or has been moved.
+        </div>
+
+        <div class="helpful-links">
+            <h3>You might want to:</h3>
+            <ul>
+                <li>Check if the URL is correct</li>
+                <li>Return to the <a href="index.html">homepage</a></li>
+                <li>View your <a href="profile.html">profile</a></li>
+                <li>Browse <a href="index.html">recent discussions</a></li>
+                <li>Contact a moderator if you need help</li>
+            </ul>
+        </div>
+
+        <div class="search-box">
+            <form onsubmit="return handleSearch(event)">
+                <input type="text" class="search-input" placeholder="Search the forum...">
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function setTheme(color) {
+            document.documentElement.style.setProperty('--bg-color', color);
+            document.getElementById('bgcolor').value = color;
+        }
+
+        function handleSearch(event) {
+            event.preventDefault();
+            // In a real implementation, this would perform the search
+            alert("Search functionality would be implemented here!");
+            return false;
+        }
+    </script>
+</body>
+</html>
