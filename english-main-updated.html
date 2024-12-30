@@ -4,43 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anime Forum</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/theme.js"></script>
     <style>
-        :root {
-            --bg-color: #FFFFEC;
-        }
-        
-        body {
-            font-family: "MS PGothic", Arial, sans-serif;
-            background: var(--bg-color);
-            color: #000;
-            line-height: 1.5;
-            margin: 8px;
-            padding: 0;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        /* ... [previous CSS styles remain the same] ... */
-        
-        .site-header {
-            border: 1px solid #8B8B8B;
-            padding: 5px;
-            background: #F0E0D6;
-            margin-bottom: 10px;
-        }
-        
+        /* Page-specific styles */
         .category {
             border: 1px solid #8B8B8B;
             margin-bottom: 20px;
-        }
-        
-        .category-header {
-            background: #E04040;
-            color: #FFFFFF;
-            padding: 3px;
-            font-weight: normal;
-            font-size: 100%;
-            margin: 0;
         }
         
         .thread-list {
@@ -59,35 +29,10 @@
             border-bottom: none;
         }
         
-        .thread-title {
-            text-decoration: none;
-            color: #0000EE;
-        }
-        
         .thread-title:visited {
             color: #551A8B;
         }
-        
-        .thread-info {
-            color: #707070;
-            font-size: 85%;
-        }
-        
-        .nav-links {
-            margin: 10px 0;
-            font-size: 90%;
-        }
-        
-        .nav-links a {
-            color: #0000EE;
-            text-decoration: none;
-            margin-right: 10px;
-        }
-        
-        .nav-links a:hover {
-            text-decoration: underline;
-        }
-        
+
         .rules {
             border: 1px solid #8B8B8B;
             padding: 5px;
@@ -108,37 +53,11 @@
             font-size: 90%;
             margin: 2px 0;
         }
-        
-        .submit-btn {
-            font-size: 90%;
-            margin-top: 5px;
-        }
-
-        .settings {
-            border: 1px solid #8B8B8B;
-            padding: 5px;
-            margin: 10px 0;
-            background: #F0E0D6;
-        }
-
-        .theme-buttons {
-            margin: 5px 0;
-        }
-
-        .theme-btn {
-            margin-right: 5px;
-            padding: 2px 8px;
-            cursor: pointer;
-        }
-
-        .color-picker {
-            margin: 5px 0;
-        }
     </style>
 </head>
 <body>
     <div class="site-header">
-        <h1 style="font-size: 100%; margin: 0;">Anime Forum</h1>
+        <h1>Anime Forum</h1>
     </div>
 
     <div class="nav-links">
@@ -151,15 +70,14 @@
     <div class="settings">
         <div>Theme:</div>
         <div class="theme-buttons">
-            <button class="theme-btn" onclick="setTheme('#FFFFEC')">Classic</button>
-            <button class="theme-btn" onclick="setTheme('#E0FFE0')">Mint</button>
-            <button class="theme-btn" onclick="setTheme('#FFE0E0')">Sakura</button>
-            <button class="theme-btn" onclick="setTheme('#E0E0FF')">Sky</button>
+            <button class="theme-btn" data-theme="#FFFFEC">Classic</button>
+            <button class="theme-btn" data-theme="#E0FFE0">Mint</button>
+            <button class="theme-btn" data-theme="#FFE0E0">Sakura</button>
+            <button class="theme-btn" data-theme="#E0E0FF">Sky</button>
         </div>
         <div>
             <label for="bgcolor">Custom Color:</label>
-            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC" 
-                   oninput="setTheme(this.value)">
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC">
         </div>
     </div>
 
@@ -169,10 +87,10 @@
     </div>
 
     <div class="new-thread-form">
-        <form>
-            <div>Name: <input type="text" size="20"></div>
-            <div>Title: <input type="text" size="30"></div>
-            <div><textarea rows="3" cols="50" placeholder="Message"></textarea></div>
+        <form onsubmit="return handleNewThread(event)">
+            <div>Name: <input type="text" size="20" required></div>
+            <div>Title: <input type="text" size="30" required></div>
+            <div><textarea rows="3" cols="50" placeholder="Message" required></textarea></div>
             <div><input type="submit" value="Create Thread" class="submit-btn"></div>
         </form>
     </div>
@@ -211,10 +129,16 @@
     </div>
 
     <script>
-        // Simple theme setter without localStorage
-        function setTheme(color) {
-            document.documentElement.style.setProperty('--bg-color', color);
-            document.getElementById('bgcolor').value = color;
+        function handleNewThread(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = form.querySelector('input[size="20"]').value;
+            const title = form.querySelector('input[size="30"]').value;
+            const message = form.querySelector('textarea').value;
+            
+            // In a real implementation, this would submit to a server
+            alert(`New thread:\nName: ${name}\nTitle: ${title}\nMessage length: ${message.length} characters`);
+            return false;
         }
     </script>
 </body>
