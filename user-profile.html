@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Anime Forum</title>
+    <style>
+        :root {
+            --bg-color: #FFFFEC;
+        }
+        
+        body {
+            font-family: "MS PGothic", Arial, sans-serif;
+            background: var(--bg-color);
+            color: #000;
+            line-height: 1.5;
+            margin: 8px;
+            padding: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .site-header {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            background: #F0E0D6;
+            margin-bottom: 10px;
+        }
+        
+        .nav-links {
+            margin: 10px 0;
+            font-size: 90%;
+        }
+        
+        .nav-links a {
+            color: #0000EE;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .settings {
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin: 10px 0;
+            background: #F0E0D6;
+        }
+        
+        .theme-buttons {
+            margin: 5px 0;
+        }
+        
+        .theme-btn {
+            margin-right: 5px;
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+        
+        .color-picker {
+            margin: 5px 0;
+        }
+
+        .profile-container {
+            border: 1px solid #8B8B8B;
+            margin: 10px 0;
+        }
+
+        .profile-header {
+            background: #E04040;
+            color: #FFFFFF;
+            padding: 3px;
+            font-weight: normal;
+            font-size: 100%;
+            margin: 0;
+        }
+
+        .profile-content {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            background: #FFFFFF;
+        }
+
+        .profile-sidebar {
+            flex: 0 0 200px;
+        }
+
+        .profile-main {
+            flex: 1;
+        }
+
+        .avatar-section {
+            background: #F0E0D6;
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .avatar-img {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #8B8B8B;
+            margin: 5px 0;
+        }
+
+        .user-stats {
+            background: #F0E0D6;
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            font-size: 90%;
+        }
+
+        .user-info {
+            background: #F0E0D6;
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .info-row {
+            display: flex;
+            margin: 2px 0;
+            font-size: 90%;
+        }
+
+        .info-label {
+            flex: 0 0 100px;
+            color: #117743;
+        }
+
+        .recent-posts {
+            background: #F0E0D6;
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .post-item {
+            background: #FFFFFF;
+            border: 1px solid #8B8B8B;
+            margin: 5px 0;
+            padding: 5px;
+            font-size: 90%;
+        }
+
+        .post-title {
+            color: #0000EE;
+            text-decoration: none;
+        }
+
+        .post-meta {
+            color: #707070;
+            font-size: 85%;
+            margin-top: 3px;
+        }
+
+        .edit-profile {
+            background: #F0E0D6;
+            border: 1px solid #8B8B8B;
+            padding: 5px;
+        }
+
+        .edit-btn {
+            background: #E04040;
+            color: white;
+            border: none;
+            padding: 3px 10px;
+            cursor: pointer;
+            font-family: "MS PGothic", Arial, sans-serif;
+        }
+
+        .edit-btn:hover {
+            background: #C03030;
+        }
+
+        @media (max-width: 600px) {
+            .profile-content {
+                flex-direction: column;
+            }
+            
+            .profile-sidebar {
+                flex: 0 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-header">
+        <h1 style="font-size: 100%; margin: 0;">Anime Forum - User Profile</h1>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="rules.html">Rules</a>
+        <a href="help.html">Help</a>
+    </div>
+
+    <div class="settings">
+        <div>Theme:</div>
+        <div class="theme-buttons">
+            <button class="theme-btn" onclick="setTheme('#FFFFEC')">Classic</button>
+            <button class="theme-btn" onclick="setTheme('#E0FFE0')">Mint</button>
+            <button class="theme-btn" onclick="setTheme('#FFE0E0')">Sakura</button>
+            <button class="theme-btn" onclick="setTheme('#E0E0FF')">Sky</button>
+        </div>
+        <div>
+            <label for="bgcolor">Custom Color:</label>
+            <input type="color" id="bgcolor" class="color-picker" value="#FFFFEC" 
+                   oninput="setTheme(this.value)">
+        </div>
+    </div>
+
+    <div class="profile-container">
+        <h2 class="profile-header">AnimeUser123's Profile</h2>
+        
+        <div class="profile-content">
+            <div class="profile-sidebar">
+                <div class="avatar-section">
+                    <img src="/api/placeholder/150/150" alt="User Avatar" class="avatar-img">
+                    <div>Member since: Dec 2024</div>
+                </div>
+                
+                <div class="user-stats">
+                    <div>Posts: 127</div>
+                    <div>Threads: 15</div>
+                    <div>Status: Online</div>
+                    <div>Rank: Regular Member</div>
+                </div>
+            </div>
+            
+            <div class="profile-main">
+                <div class="user-info">
+                    <div class="info-row">
+                        <div class="info-label">Location:</div>
+                        <div>Tokyo, Japan</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Interests:</div>
+                        <div>Anime, Manga, Gaming</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">About Me:</div>
+                        <div>Anime enthusiast since 2010. Favorite genres: Slice of Life, Action</div>
+                    </div>
+                </div>
+
+                <div class="recent-posts">
+                    <h3 style="font-size: 100%; margin: 0 0 5px 0;">Recent Posts</h3>
+                    
+                    <div class="post-item">
+                        <a href="#" class="post-title">First Impressions: Newest Anime Season</a>
+                        <div class="post-meta">Posted in: General Discussion • 2024-12-30 14:30</div>
+                    </div>
+                    
+                    <div class="post-item">
+                        <a href="#" class="post-title">Voice Actor Discussion Thread</a>
+                        <div class="post-meta">Posted in: Voice Actors • 2024-12-29 16:45</div>
+                    </div>
+                    
+                    <div class="post-item">
+                        <a href="#" class="post-title">Spring 2024 Recommendations</a>
+                        <div class="post-meta">Posted in: Recommendations • 2024-12-28 09:15</div>
+                    </div>
+                </div>
+
+                <div class="edit-profile">
+                    <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setTheme(color) {
+            document.documentElement.style.setProperty('--bg-color', color);
+            document.getElementById('bgcolor').value = color;
+        }
+
+        function editProfile() {
+            // In a real implementation, this would lead to the profile editing page
+            alert("Edit profile functionality would be implemented here!");
+        }
+    </script>
+</body>
+</html>
