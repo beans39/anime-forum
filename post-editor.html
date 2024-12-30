@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Editor - Anime Forum</title>
+
+    <script>
+        // Theme Initialization
+        (function() {
+            // Set initial theme from localStorage
+            const savedTheme = localStorage.getItem('forumTheme') || '#FFFFEC';
+            document.documentElement.style.setProperty('--bg-color', savedTheme);
+            
+            // Optional: Update color picker if it exists
+            window.addEventListener('DOMContentLoaded', () => {
+                const colorPicker = document.getElementById('bgcolor');
+                if (colorPicker) {
+                    colorPicker.value = savedTheme;
+                }
+            });
+        })();
+    </script>
+    
     <style>
         :root {
             --bg-color: #FFFFEC;
